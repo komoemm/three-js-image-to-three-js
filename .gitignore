@@ -24,10 +24,25 @@ docs/PLAN_*.md
 # Extracted Valve CS2 textures -- IP belongs to Valve, never committed.
 cs2_textures/
 
-# Runtime dependencies and generated browser bundles
-runtime/**/node_modules/
-runtime/**/dist/
-runtime/**/.vite/
+# Node dependencies (Root and Viewer)
+node_modules/
+viewer/node_modules/
+**/node_modules/
+
+# Production build outputs
+dist/
+viewer/dist/
+**/dist/
+
+# Vite / Build cache
+.vite/
+viewer/.vite/
+.cache/
+
+# Environment and Local overrides
+.env
+.env.local
+*.local
 integrations/vision/.venv/
 
 .cache/spec-search/

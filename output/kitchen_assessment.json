@@ -1,0 +1,111 @@
+{
+  "targetName": "PanasonicLClassKitchen",
+  "sourceImage": "images/system_kitchen.png",
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "modular system kitchen island",
+      "primaryDomain": "object",
+      "formLanguage": [
+        "minimalist",
+        "geometric",
+        "floating-cantilever",
+        "japanese-system-kitchen"
+      ],
+      "structureKind": [
+        "recessed-pedestal",
+        "carcass-cabinetry",
+        "modular-drawers",
+        "dining-doors",
+        "countertop-slab",
+        "triple-wide-ih",
+        "downdraft-vents",
+        "integrated-sink",
+        "gooseneck-faucet"
+      ],
+      "motionPotential": [
+        "drawer-sliding-extension",
+        "dining-door-hinge-swing",
+        "faucet-spout-swivel",
+        "faucet-wand-pulldown",
+        "mixer-lever-pivot",
+        "burner-heat-glow"
+      ],
+      "materialFamilies": [
+        "brushed-stainless-steel",
+        "matte-lacquered-melamine",
+        "engineered-quartz",
+        "anodized-black-aluminum",
+        "ceramic-glass",
+        "mirror-chrome",
+        "composite-acrylic-resin"
+      ],
+      "notes": "Panasonic L-Class luxury system kitchen island with floating metallic pedestal, Triple Wide IH cooktop, and Sugopika integrated sink."
+    },
+    "complexity": {
+      "tier": "moderate",
+      "scores": {
+        "silhouetteComplexity": 3,
+        "componentCount": 3,
+        "hierarchyDepth": 3,
+        "repetitionDensity": 2,
+        "materialLayerCount": 3,
+        "localDetailDensity": 3,
+        "occlusionRisk": 1,
+        "actionReadinessNeed": 3
+      },
+      "estimatedCounts": {
+        "macroComponents": 5,
+        "mesoComponents": 12,
+        "microFeatureGroups": 8,
+        "materialLayers": 8,
+        "repetitionSystems": 3
+      },
+      "reasoning": [
+        "Multi-bay modular kitchen island with high-fidelity appliances and fixtures."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "moderate",
+      "minimumComponentLevels": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "needsRepetitionSystems": true,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "Panasonic L-Class modular island with multi-bay appliances and interactive fixtures"
+    },
+    "unknownsToResolveBeforeImplementation": [],
+    "detailInventory": {
+      "scanMethod": "component-zones",
+      "targetMinDetails": 6,
+      "note": "Enumerate every identity-defining small detail before authoring the spec.",
+      "details": [
+        { "id": "plinthSeams", "name": "Plinth modular division seams", "zone": "base-plinth" },
+        { "id": "barHandles", "name": "Anodized matte black horizontal bar handles", "zone": "working-drawers" },
+        { "id": "diningDoorsSlab", "name": "6-panel full-height flush slab doors", "zone": "dining-elevation" },
+        { "id": "tripleWideBurners", "name": "Triple Wide IH inline horizontal burner arrangement", "zone": "cooktop-deck" },
+        { "id": "downdraftVentGrates", "name": "3 flush downdraft exhaust grates", "zone": "cooktop-ventilation" },
+        { "id": "wireSpongeRack", "name": "Suspended stainless steel wire sponge rack", "zone": "sink-utility-ledge" },
+        { "id": "faucetSensorLens", "name": "Infrared touchless sensor window on faucet pillar", "zone": "faucet-column" }
+      ]
+    },
+    "sourceImage": "images/system_kitchen.png"
+  },
+  "qualityContract": {
+    "qualityBar": "moderate",
+    "definitionOfDone": [
+      "The rendered model matches the reference silhouette, primary proportions, visible component hierarchy, material response, and recognizable local features for the Panasonic L-Class kitchen."
+    ],
+    "minimumSpecDepth": {
+      "macroComponents": 3,
+      "mesoComponents": 6,
+      "microFeatureGroups": 4,
+      "materialLayers": 4,
+      "repetitionSystems": 2,
+      "reviewViewpoints": 4
+    }
+  }
+}

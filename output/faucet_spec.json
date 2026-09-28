@@ -1,0 +1,174 @@
+{
+  "targetName": "BasinGooseneckFaucet",
+  "targetId": "basin-gooseneck-faucet",
+  "schemaVersion": "2.1",
+  "terminologyProfile": {
+    "domain": "real-time procedural Three.js asset",
+    "geometryTerms": [
+      "silhouette",
+      "cylinder",
+      "tube",
+      "curve-sweep",
+      "torus",
+      "chamfer",
+      "bevel"
+    ],
+    "materialTerms": [
+      "albedo",
+      "roughness",
+      "metalness",
+      "specular",
+      "clearcoat"
+    ],
+    "lightingTerms": [
+      "key light",
+      "fill light",
+      "environment reflection"
+    ],
+    "descriptionRule": "Use measurable 3D graphics terms."
+  },
+  "sourceImage": "images/basin_faucet.png",
+  "suitability": "pass",
+  "coordinateFrame": {
+    "origin": "base-center",
+    "groundPlane": "y=0",
+    "up": "+y",
+    "front": "+z",
+    "symmetry": "asymmetric",
+    "facingDirection": "+z"
+  },
+  "silhouette": {
+    "aspectRatio": 0.48,
+    "primaryForm": "vertical tubular column with high 180-degree gooseneck arch",
+    "keyFeatures": [
+      "vertical cylindrical mounting pillar with base seal flange",
+      "horizontal transverse valve cartridge body",
+      "right-side pin lever mixer handle with forward tilt",
+      "graceful continuous 180-degree tubular gooseneck arc",
+      "tapered pull-out spray wand with integrated rocker button",
+      "downward aerator nozzle face",
+      "mirror-polished chrome electroplated finish"
+    ]
+  },
+  "componentTree": [
+    {
+      "id": "deckFlange",
+      "name": "Base Deck Collar Flange",
+      "level": "meso",
+      "role": "mount",
+      "primitive": "cylinder",
+      "topologyClass": "assembled-solid",
+      "parent": null,
+      "dimensions": { "width": 0.052, "height": 0.008, "depth": 0.052, "units": "meters" },
+      "transform": { "position": [0, 0.004, 0], "rotation": [0, 0, 0], "scale": [1, 1, 1] },
+      "material": "chromeMirror"
+    },
+    {
+      "id": "basePillar",
+      "name": "Vertical Column Pillar",
+      "level": "macro",
+      "role": "body",
+      "primitive": "cylinder",
+      "topologyClass": "assembled-solid",
+      "parent": null,
+      "dimensions": { "width": 0.046, "height": 0.09, "depth": 0.046, "units": "meters" },
+      "transform": { "position": [0, 0.05, 0], "rotation": [0, 0, 0], "scale": [1, 1, 1] },
+      "material": "chromeMirror"
+    },
+    {
+      "id": "transverseHub",
+      "name": "Valve Cartridge T-Hub",
+      "level": "macro",
+      "role": "valve-body",
+      "primitive": "cylinder",
+      "topologyClass": "assembled-solid",
+      "parent": "basePillar",
+      "dimensions": { "width": 0.088, "height": 0.046, "depth": 0.046, "units": "meters" },
+      "transform": { "position": [0.015, 0.092, 0], "rotation": [0, 0, 1.5708], "scale": [1, 1, 1] },
+      "material": "chromeMirror"
+    },
+    {
+      "id": "mixerLever",
+      "name": "Pin Lever Mixer Handle",
+      "level": "meso",
+      "role": "control",
+      "primitive": "cylinder",
+      "topologyClass": "assembled-solid",
+      "parent": "transverseHub",
+      "dimensions": { "width": 0.038, "height": 0.085, "depth": 0.038, "units": "meters" },
+      "transform": { "position": [0.054, 0.092, 0], "rotation": [0, 0, 0], "scale": [1, 1, 1] },
+      "material": "chromeMirror"
+    },
+    {
+      "id": "gooseneckNeck",
+      "name": "High-Arc Tubular Gooseneck",
+      "level": "macro",
+      "role": "spout",
+      "primitive": "curve-sweep",
+      "topologyClass": "assembled-solid",
+      "parent": "transverseHub",
+      "dimensions": { "width": 0.026, "height": 0.32, "depth": 0.17, "units": "meters" },
+      "transform": { "position": [0, 0.115, 0], "rotation": [0, 0, 0], "scale": [1, 1, 1] },
+      "material": "chromeMirror"
+    },
+    {
+      "id": "pulloutWand",
+      "name": "Pull-out Spray Wand Nozzle",
+      "level": "macro",
+      "role": "head",
+      "primitive": "cylinder",
+      "topologyClass": "assembled-solid",
+      "parent": "gooseneckNeck",
+      "dimensions": { "width": 0.025, "height": 0.095, "depth": 0.025, "units": "meters" },
+      "transform": { "position": [0, 0.28, 0.145], "rotation": [0, 0, 0], "scale": [1, 1, 1] },
+      "material": "chromeMirror"
+    },
+    {
+      "id": "rockerButton",
+      "name": "Dual-Mode Spray Rocker Button",
+      "level": "micro",
+      "role": "switch",
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "parent": "pulloutWand",
+      "dimensions": { "width": 0.008, "height": 0.022, "depth": 0.004, "units": "meters" },
+      "transform": { "position": [0, 0.305, 0.160], "rotation": [0, 0, 0], "scale": [1, 1, 1] },
+      "material": "buttonDark"
+    }
+  ],
+  "materials": [
+    {
+      "id": "chromeMirror",
+      "name": "Mirror Polished Chrome",
+      "type": "MeshStandardMaterial",
+      "baseColor": "#f8f9fa",
+      "roughness": 0.06,
+      "metalness": 0.98
+    },
+    {
+      "id": "buttonDark",
+      "name": "Satin Dark Grey Elastomer",
+      "type": "MeshStandardMaterial",
+      "baseColor": "#2b2f33",
+      "roughness": 0.55,
+      "metalness": 0.15
+    },
+    {
+      "id": "aeratorPlastic",
+      "name": "Molded White Aerator Core",
+      "type": "MeshStandardMaterial",
+      "baseColor": "#e5e7eb",
+      "roughness": 0.4,
+      "metalness": 0.05
+    }
+  ],
+  "proceduralStrategy": [
+    "Construct vertical cylindrical mounting pillar with base seal flange",
+    "Model horizontal transverse cartridge valve cylinder with right-side rotating collar",
+    "Build pin-lever handle with smooth horizontal pivot and vertical pin grip",
+    "Create smooth continuous 180-degree tubular gooseneck pipe with 26mm diameter",
+    "Model detachable pull-out spray wand with subtle seam ring and front rocker switch",
+    "Add underside aerator nozzle with concentric spray holes",
+    "Implement interactive controls for horizontal swivel, lever pivot, and spray wand extension"
+  ]
+}

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>img2threejs Interactive Model Viewer & Testing Workbench</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- Header -->
+      <header class="topbar">
+        <div class="logo-group">
+          <div class="logo-badge">3D</div>
+          <div>
+            <h1>img2threejs <span class="tag">Studio Testbed</span></h1>
+            <p class="subtitle">Procedural Three.js Reconstruction & Verification</p>
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+          <button id="btn-toggle-guide" class="btn btn-secondary">
+            <span class="icon">📖</span> Pipeline Guide
+          </button>
+          <button id="btn-export-glb" class="btn btn-secondary" title="Export currently loaded model as binary GLB">
+            <span class="icon">📦</span> Export GLB
+          </button>
+          <button id="btn-export-ts" class="btn btn-secondary" title="Download the raw TypeScript procedural factory code">
+            <span class="icon">📜</span> Export TS Script
+          </button>
+          <button id="btn-screenshot" class="btn btn-primary">
+            <span class="icon">📸</span> Review Capture
+          </button>
+        </div>
+      </header>
+
+      <!-- Main Layout -->
+      <main class="main-content">
+        <!-- 3D Canvas Container -->
+        <div class="viewport-container" id="viewport-container">
+          <canvas id="three-canvas"></canvas>
+
+          <!-- Floating Viewport Overlay Toolbar -->
+          <div class="viewport-toolbar">
+            <div class="tool-group">
+              <button id="tool-wireframe" class="tool-btn" title="Toggle Wireframe">
+                <span>🕸️</span> Wireframe
+              </button>
+              <button id="tool-pullout" class="tool-btn" title="Pull Out / Retract Spray Head">
+                <span>🚿</span> Pull Wand
+              </button>
+              <button id="tool-water" class="tool-btn active" title="Toggle Water Flow">
+                <span>💧</span> Water
+              </button>
+              <button id="tool-drawers" class="tool-btn" title="Toggle Drawers Open/Close">
+                <span>🗄️</span> Drawers
+              </button>
+              <button id="tool-dining-doors" class="tool-btn" title="Toggle Dining Side Doors">
+                <span>🚪</span> Dining Doors
+              </button>
+              <button id="tool-burners" class="tool-btn" title="Toggle Triple Wide IH Induction Burners">
+                <span>🔥</span> IH Burners
+              </button>
+              <button id="tool-rotate" class="tool-btn" title="Toggle Auto-Rotate">
+                <span>🔄</span> Orbit
+              </button>
+              <button id="tool-reset-cam" class="tool-btn" title="Reset Camera View">
+                <span>🎯</span> Focus
+              </button>
+              <button id="tool-grid" class="tool-btn active" title="Toggle Floor Grid">
+                <span>📏</span> Grid
+              </button>
+            </div>
+            <div class="tool-group">
+              <button id="tool-split" class="tool-btn" title="Toggle Reference Split View">
+                <span>🖼️</span> Compare Ref
+              </button>
+            </div>
+          </div>
+
+          <!-- Reference Split Comparison Pane -->
+          <div class="ref-split-pane hidden" id="ref-split-pane">
+            <div class="ref-header">
+              <h3>Reference Image</h3>
+              <div class="ref-actions">
+                <label class="btn-file-upload">
+                  <span>Upload Ref</span>
+                  <input type="file" id="ref-file-input" accept="image/*" />
+                </label>
+                <button id="btn-close-ref" class="btn-icon">✕</button>
+              </div>
+            </div>
+            <div class="ref-body">
+              <div class="ref-dropzone" id="ref-dropzone">
+                <img id="ref-image-preview" src="" alt="Reference Preview" class="hidden" />
+                <div class="drop-hint" id="drop-hint">
+                  <span class="upload-icon">📂</span>
+                  <p>Drop reference image here</p>
+                  <span class="small-text">PNG, JPG, or WebP</span>
+                </div>
+              </div>
+              <div class="ref-controls" id="ref-controls">
+                <label>
+                  <span>Opacity Overlay:</span>
+                  <input type="range" id="ref-opacity" min="0" max="100" value="100" />
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Loading Spinner -->
+          <div class="viewport-loader hidden" id="viewport-loader">
+            <div class="spinner"></div>
+            <p id="loader-status">Building procedural geometry...</p>
+          </div>
+        </div>
+
+        <!-- Sidebar Panel -->
+        <aside class="sidebar" id="sidebar">
+          <div class="sidebar-section">
+            <h2 class="section-title">Active Model</h2>
+            <div class="control-card">
+              <label for="model-selector" class="control-label">Loaded Factory</label>
+              <select id="model-selector" class="custom-select">
+                <option value="kitchen" selected>Panasonic L-Class System Kitchen (Active Reconstructed)</option>
+                <option value="faucet">Basin Gooseneck Water Head Pipe (Component)</option>
+                <option value="tradeItCase">TradeIt Hard Case (Fixture Demo)</option>
+                <option value="hyper3d">Hyper3D Badge (Sample Pipeline Run)</option>
+              </select>
+              <div class="model-info" id="model-info">
+                <div class="info-row">
+                  <span class="label">Pass Phase:</span>
+                  <span class="value badge badge-green" id="model-pass">Blockout / Form</span>
+                </div>
+                <div class="info-row">
+                  <span class="label">Primitives:</span>
+                  <span class="value" id="model-primitives">Procedural Boxes & Fillets</span>
+                </div>
+                <div class="info-row">
+                  <span class="label">Pivots & Sockets:</span>
+                  <span class="value" id="model-pivots">Hinge Lid Pivot Exposed</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Environment & Lighting -->
+          <div class="sidebar-section">
+            <h2 class="section-title">Lighting & Studio</h2>
+            <div class="control-card">
+              <div class="control-row">
+                <label>Key Light Intensity</label>
+                <input type="range" id="light-key" min="0" max="3" step="0.1" value="1.5" />
+              </div>
+              <div class="control-row">
+                <label>Ambient Fill</label>
+                <input type="range" id="light-ambient" min="0" max="2" step="0.1" value="0.7" />
+              </div>
+              <div class="control-row">
+                <label>Background Studio</label>
+                <select id="bg-selector" class="custom-select">
+                  <option value="dark">Cinematic Dark (#0c0f14)</option>
+                  <option value="slate">Studio Slate (#1a202c)</option>
+                  <option value="neutral">Warm Neutral (#2d3238)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Scene Hierarchy & Mesh Inspector -->
+          <div class="sidebar-section">
+            <h2 class="section-title">Component Inspector</h2>
+            <div class="inspector-card">
+              <div id="hierarchy-tree" class="hierarchy-tree">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+          </div>
+        </aside>
+      </main>
+
+      <!-- Pipeline Guide Modal -->
+      <div class="modal-overlay hidden" id="guide-modal">
+        <div class="modal-window">
+          <div class="modal-header">
+            <h2>img2threejs Reconstruction Workflow & Testing Guide</h2>
+            <button id="btn-close-modal" class="btn-icon">✕</button>
+          </div>
+          <div class="modal-body">
+            <div class="guide-step">
+              <div class="step-num">1</div>
+              <div class="step-desc">
+                <h4>Stage 1: Image Intake & Technical Probe</h4>
+                <p>Provide a clear reference image (object or character). Run the probe to verify dimensions and aspect ratio:</p>
+                <code>python forge/stage1_intake/probe_image.py &lt;image.png&gt;</code>
+              </div>
+            </div>
+
+            <div class="guide-step">
+              <div class="step-num">2</div>
+              <div class="step-desc">
+                <h4>Stage 2: Assessment & Strict Sculpt Spec</h4>
+                <p>Score the complexity, detail inventory, and produce the quality-gated JSON spec:</p>
+                <code>python forge/stage2_spec/new_pre_spec_assessment.py "MyObject" --image &lt;image.png&gt; --out assessment.json<br>
+python forge/stage2_spec/new_sculpt_spec.py "MyObject" --image &lt;image.png&gt; --assessment assessment.json --out spec.json<br>
+python forge/stage2_spec/validate_sculpt_spec.py spec.json --strict-quality</code>
+              </div>
+            </div>
+
+            <div class="guide-step">
+              <div class="step-num">3</div>
+              <div class="step-desc">
+                <h4>Stage 3: Procedural Three.js Factory Codegen</h4>
+                <p>Generate the TypeScript factory model. No meshes, pure code:</p>
+                <code>python forge/stage3_build/generate_threejs_factory.py spec.json --out viewer/src/models/myModel.ts</code>
+              </div>
+            </div>
+
+            <div class="guide-step">
+              <div class="step-num">4</div>
+              <div class="step-desc">
+                <h4>Stage 4: Browser Verification & Comparison Sheet</h4>
+                <p>Inspect the model right here in this viewer, capture a screenshot, and package the comparison sheet for gating:</p>
+                <code>python forge/stage4_review/make_comparison_sheet.py --reference &lt;image.png&gt; --render &lt;render.png&gt; --out review.png</code>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toast Notification -->
+      <div id="toast" class="toast hidden"></div>
+    </div>
+
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>

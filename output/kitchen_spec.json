@@ -1,0 +1,381 @@
+{
+  "targetName": "PanasonicSClassKitchen",
+  "targetId": "panasonic-s-class-kitchen",
+  "schemaVersion": "2.1",
+  "terminologyProfile": {
+    "domain": "real-time procedural Three.js asset",
+    "geometryTerms": [
+      "silhouette",
+      "topology",
+      "primitive",
+      "bevel",
+      "chamfer",
+      "taper",
+      "tube",
+      "curve-sweep",
+      "edge loop"
+    ],
+    "materialTerms": [
+      "albedo",
+      "baseColor",
+      "roughness",
+      "metalness",
+      "specular",
+      "bump map",
+      "emissive"
+    ],
+    "lightingTerms": [
+      "key light",
+      "fill light",
+      "ambient light",
+      "point light"
+    ],
+    "descriptionRule": "Use measurable 3D graphics terms. Avoid vague words unless they are paired with concrete geometry/material/shader parameters."
+  },
+  "sourceImage": "images/system_kitchen.png",
+  "suitability": "pass",
+  "coordinateFrame": {
+    "origin": "base-center",
+    "groundPlane": "y=0",
+    "up": "+y",
+    "front": "+z",
+    "symmetry": "asymmetric",
+    "facingDirection": "+z"
+  },
+  "silhouette": {
+    "aspectRatio": 2.85,
+    "primaryForm": "floating cantilever island with recessed stainless pedestal and true sunken sink cavity",
+    "keyFeatures": [
+      "overall dimensions 2573mm W x 933mm D x 900mm H with 40mm thick Granule White quartz counter",
+      "countertop with physical cutout opening for full visual depth into the sink cavity",
+      "Panasonic Sukimaless Stainless Sink M-Type JUA36SZBSU (787 x 480 x 195 mm deep)",
+      "internal stepped perimeter accessory track (Sla-kuru tier at 28mm depth)",
+      "rear-left recessed detergent pocket with soap dispenser bottle and kitchen sponge",
+      "slidable wire dish-drying rack (Sla-kuru Net) with white dinner plates and clear tumblers",
+      "deep circular stainless steel drain well and strainer lid with crescent intake slit",
+      "Panasonic front-sensor gooseneck faucet JUA08FPSTDA2 with touchless infrared eye and lever",
+      "Panasonic Triple Wide IH cooktop JUAS13EB4E3K (900 x 637 mm) with 3 inline horizontal burners",
+      "three flush-mounted downdraft ventilation grilles behind cooktop burners",
+      "floating cantilever brushed stainless steel plinth pedestal with modular bay seams",
+      "dark matte charcoal / scratch metal cabinetry CH20 with 3 working bays and 6 rear dining slab doors"
+    ]
+  },
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "modular system kitchen island",
+      "primaryDomain": "object",
+      "formLanguage": [
+        "minimalist",
+        "geometric",
+        "floating-cantilever",
+        "japanese-system-kitchen"
+      ],
+      "structureKind": [
+        "recessed-pedestal",
+        "carcass-cabinetry",
+        "modular-drawers",
+        "dining-doors",
+        "cutout-countertop-slab",
+        "triple-wide-ih",
+        "downdraft-vents",
+        "sunken-stainless-sink",
+        "gooseneck-faucet"
+      ],
+      "motionPotential": [
+        "drawer-sliding-extension",
+        "dining-door-hinge-swing",
+        "faucet-spout-swivel",
+        "faucet-wand-pulldown",
+        "mixer-lever-pivot",
+        "burner-heat-glow"
+      ],
+      "materialFamilies": [
+        "brushed-stainless-steel",
+        "scratch-metal-lacquer",
+        "engineered-granule-quartz",
+        "anodized-black-aluminum",
+        "ceramic-glass",
+        "mirror-chrome",
+        "porcelain-ceramic",
+        "clear-glass"
+      ],
+      "notes": "Panasonic S-Class System Kitchen conforming to official architectural quotation and drawing sheet specifications."
+    },
+    "complexity": {
+      "tier": "moderate",
+      "scores": {
+        "silhouetteComplexity": 3,
+        "componentCount": 3,
+        "hierarchyDepth": 3,
+        "repetitionDensity": 2,
+        "materialLayerCount": 3,
+        "localDetailDensity": 3,
+        "occlusionRisk": 1,
+        "actionReadinessNeed": 3
+      },
+      "estimatedCounts": {
+        "macroComponents": 5,
+        "mesoComponents": 14,
+        "microFeatureGroups": 10,
+        "materialLayers": 9,
+        "repetitionSystems": 3
+      },
+      "reasoning": [
+        "Architectural system kitchen island with precision cutouts, deep recessed sink, and modular accessories."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "moderate",
+      "minimumComponentLevels": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "needsRepetitionSystems": true,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "Panasonic S-Class system kitchen with precision multi-tier stainless sink and slidable dish rack"
+    },
+    "unknownsToResolveBeforeImplementation": []
+  },
+  "componentTree": [
+    {
+      "id": "plinthPedestal",
+      "name": "Floating Brushed Stainless Plinth Pedestal",
+      "level": "macro",
+      "role": "plinth",
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Recessed supporting pedestal elevated 220mm from floor with bay division seams",
+      "parent": null,
+      "dimensions": { "width": 2.293, "height": 0.22, "depth": 0.673, "units": "meters" },
+      "transform": { "position": [0, 0.11, 0], "rotation": [0, 0, 0], "scale": [1, 1, 1] },
+      "material": "plinthStainless",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(208, 213, 218, 1.0)",
+        "secondaryAlbedo": "rgba(170, 175, 180, 1.0)",
+        "materialClass": "metal",
+        "materialClassConfidence": 0.95
+      },
+      "actionProfile": { "category": "fixed" }
+    },
+    {
+      "id": "islandCarcass",
+      "name": "Cabinet Carcass & Side End Panels",
+      "level": "macro",
+      "role": "body",
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Monolithic structural cabinet body with flush vertical end panels",
+      "parent": null,
+      "dimensions": { "width": 2.573, "height": 0.64, "depth": 0.933, "units": "meters" },
+      "transform": { "position": [0, 0.54, 0], "rotation": [0, 0, 0], "scale": [1, 1, 1] },
+      "material": "cabinetMatte",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(36, 38, 40, 1.0)",
+        "secondaryAlbedo": "rgba(24, 26, 28, 1.0)",
+        "materialClass": "wood",
+        "materialClassConfidence": 0.92
+      },
+      "actionProfile": { "category": "fixed" }
+    },
+    {
+      "id": "countertop",
+      "name": "Granule White Quartz Countertop with Sink Cutout",
+      "level": "macro",
+      "role": "worktop",
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "40mm thick Granule White quartz countertop framing the physical 787x480mm sink opening",
+      "parent": null,
+      "dimensions": { "width": 2.573, "height": 0.040, "depth": 0.933, "units": "meters" },
+      "transform": { "position": [0, 0.88, 0], "rotation": [0, 0, 0], "scale": [1, 1, 1] },
+      "material": "countertopWhite",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(248, 249, 250, 1.0)",
+        "secondaryAlbedo": "rgba(235, 238, 240, 1.0)",
+        "materialClass": "stone",
+        "materialClassConfidence": 0.96
+      },
+      "actionProfile": { "category": "fixed" }
+    },
+    {
+      "id": "sukimalessStainlessSink",
+      "name": "Sukimaless Stainless Sink M-Type JUA36SZBSU",
+      "level": "macro",
+      "role": "fixture",
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Deep 195mm recessed Japanese 304 satin stainless steel sink with 2-tier accessory track",
+      "parent": "countertop",
+      "dimensions": { "width": 0.787, "height": 0.195, "depth": 0.480, "units": "meters" },
+      "transform": { "position": [-0.7615, 0.900, 0.1415], "rotation": [0, 0, 0], "scale": [1, 1, 1] },
+      "material": "stainlessSink",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(200, 204, 209, 1.0)",
+        "secondaryAlbedo": "rgba(165, 170, 175, 1.0)",
+        "materialClass": "metal",
+        "materialClassConfidence": 0.98
+      },
+      "attachment": {
+        "parentSocket": "countertopSinkCutout",
+        "localStart": [0, 0, 0],
+        "localEnd": [0, -0.195, 0],
+        "contactType": "mount",
+        "embedDepth": 0.04,
+        "overlap": 0.016,
+        "gapTolerance": 0.001
+      },
+      "actionProfile": { "category": "fixed" }
+    },
+    {
+      "id": "slakuruNetDishRack",
+      "name": "Slakuru Net Wire Dish Rack with Plates",
+      "level": "meso",
+      "role": "accessory",
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Slidable chrome wire dish rack resting on upper tier holding porcelain dinner plates and glasses",
+      "parent": "sukimalessStainlessSink",
+      "dimensions": { "width": 0.38, "height": 0.12, "depth": 0.46, "units": "meters" },
+      "transform": { "position": [0.18, -0.028, 0], "rotation": [0, 0, 0], "scale": [1, 1, 1] },
+      "material": "chromeMirror",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(245, 247, 250, 1.0)",
+        "secondaryAlbedo": "rgba(255, 255, 255, 1.0)",
+        "materialClass": "metal",
+        "materialClassConfidence": 0.96
+      },
+      "attachment": {
+        "parentSocket": "sinkUpperTierLedge",
+        "localStart": [0, 0, 0],
+        "localEnd": [0, 0.12, 0],
+        "contactType": "mount",
+        "embedDepth": 0.005,
+        "overlap": 0.01,
+        "gapTolerance": 0.002
+      },
+      "actionProfile": { "category": "sliding", "axis": "+x", "range": [-0.3, 0.3] }
+    },
+    {
+      "id": "faucetFrontSensor",
+      "name": "Panasonic Front-Sensor Faucet JUA08FPSTDA2",
+      "level": "meso",
+      "role": "plumbing",
+      "primitive": "curve-sweep",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "348mm high chrome swan neck faucet with front touchless sensor eye, pull wand, and lever",
+      "parent": "countertop",
+      "dimensions": { "width": 0.05, "height": 0.348, "depth": 0.08, "units": "meters" },
+      "transform": { "position": [-0.71, 0.900, -0.16], "rotation": [0, 0, 0], "scale": [1, 1, 1] },
+      "material": "chromeMirror",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(245, 247, 250, 1.0)",
+        "secondaryAlbedo": "rgba(200, 205, 210, 1.0)",
+        "materialClass": "metal",
+        "materialClassConfidence": 0.98
+      },
+      "attachment": {
+        "parentSocket": "countertopRearDeck",
+        "localStart": [0, 0, 0],
+        "localEnd": [0, 0.348, 0.08],
+        "contactType": "mount",
+        "embedDepth": 0.01,
+        "overlap": 0.01,
+        "gapTolerance": 0.001
+      },
+      "actionProfile": { "category": "compound", "swivel": true, "pullout": true, "lever": true }
+    },
+    {
+      "id": "tripleWideIHCooktop",
+      "name": "Panasonic Triple Wide IH Cooktop JUAS13EB4E3K",
+      "level": "meso",
+      "role": "appliance",
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "900 x 637 mm ceramic glass cooktop with 3 inline circular burners",
+      "parent": "countertop",
+      "dimensions": { "width": 0.900, "height": 0.005, "depth": 0.380, "units": "meters" },
+      "transform": { "position": [0.68, 0.900, 0.03], "rotation": [0, 0, 0], "scale": [1, 1, 1] },
+      "material": "cooktopGlass",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(8, 10, 13, 1.0)",
+        "secondaryAlbedo": "rgba(138, 144, 150, 1.0)",
+        "materialClass": "glass",
+        "materialClassConfidence": 0.98
+      },
+      "attachment": {
+        "parentSocket": "countertopCooktopZone",
+        "localStart": [0, 0, 0],
+        "localEnd": [0, 0.005, 0],
+        "contactType": "mount",
+        "embedDepth": 0.002,
+        "overlap": 0.005,
+        "gapTolerance": 0.001
+      },
+      "actionProfile": { "category": "state-toggle", "states": ["off", "active-glow"] }
+    }
+  ],
+  "materials": [
+    {
+      "id": "cabinetMatte",
+      "name": "Scratch Metal Dark Charcoal Melamine CH20",
+      "type": "MeshStandardMaterial",
+      "baseColor": "#242628",
+      "roughness": 0.68,
+      "metalness": 0.08
+    },
+    {
+      "id": "plinthStainless",
+      "name": "Brushed Metallic Stainless Steel",
+      "type": "MeshStandardMaterial",
+      "baseColor": "#d0d5da",
+      "roughness": 0.28,
+      "metalness": 0.88
+    },
+    {
+      "id": "countertopWhite",
+      "name": "Granule White Quartz Countertop YS",
+      "type": "MeshStandardMaterial",
+      "baseColor": "#f8f9fa",
+      "roughness": 0.18,
+      "metalness": 0.02
+    },
+    {
+      "id": "stainlessSink",
+      "name": "Satin Brushed 304 Stainless Steel Sink",
+      "type": "MeshStandardMaterial",
+      "baseColor": "#c8ccd1",
+      "roughness": 0.22,
+      "metalness": 0.92
+    },
+    {
+      "id": "chromeMirror",
+      "name": "Mirror Polished Chrome",
+      "type": "MeshStandardMaterial",
+      "baseColor": "#f5f7fa",
+      "roughness": 0.06,
+      "metalness": 0.98
+    },
+    {
+      "id": "cooktopGlass",
+      "name": "Black Ceramic Induction Glass",
+      "type": "MeshStandardMaterial",
+      "baseColor": "#080a0d",
+      "roughness": 0.04,
+      "metalness": 0.92
+    }
+  ],
+  "proceduralStrategy": [
+    "Construct Granule White quartz countertop with real physical cutout opening matching 787x480mm sink dimensions",
+    "Model deep 195mm recessed Sukimaless stainless steel sink basin in brushed Japanese 304 stainless steel",
+    "Add internal 28mm-depth stepped accessory tier (Sla-kuru ledge) around sink cavity perimeter",
+    "Build rear-left recessed detergent pocket with stainless wire rack, soap dispenser bottle, and sponge",
+    "Place slidable Sla-kuru Net wire dish rack with vertical ceramic dinner plates and clear drinking glasses",
+    "Model circular 140mm drain cup with removable stainless strainer cover lid and crescent drainage slot",
+    "Mount front-sensor swan-neck faucet on rear counter deck with touchless sensor, swivel spout, wand, and water stream",
+    "Assemble Panasonic Triple Wide IH cooktop and 3 downdraft exhaust grilles",
+    "Build floating brushed stainless steel plinth pedestal and dark scratch metal modular cabinetry"
+  ]
+}

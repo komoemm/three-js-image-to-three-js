@@ -1,0 +1,56 @@
+{
+  "targetName": "BasinGooseneckFaucet",
+  "sourceImage": "images/basin_faucet.png",
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "gooseneck pull-out basin faucet",
+      "primaryDomain": "object",
+      "formLanguage": [
+        "minimalist",
+        "cylindrical-tubular",
+        "high-arc",
+        "ergonomic"
+      ],
+      "structureKind": [
+        "deck-mounted-pillar",
+        "horizontal-valve-hub",
+        "arched-swivel-spout",
+        "pull-out-spray-head",
+        "pin-lever-handle"
+      ],
+      "motionPotential": [
+        "spout-horizontal-swivel",
+        "lever-flow-pivot",
+        "lever-temperature-rotation",
+        "spray-head-pull-out-extension"
+      ],
+      "materialFamilies": [
+        "mirror-polished-chrome",
+        "brushed-nickel",
+        "dark-matte-elastomer-button",
+        "aerator-mesh"
+      ],
+      "notes": "Premium Japanese basin/kitchen faucet with high-arc gooseneck, pull-down spray wand with dual-mode rocker button, and side single pin-lever mixer."
+    },
+    "complexity": {
+      "tier": "moderate",
+      "scores": {
+        "silhouetteComplexity": 2,
+        "componentCount": 3,
+        "hierarchyDepth": 2,
+        "repetitionDensity": 1,
+        "materialLayerCount": 2,
+        "localDetailDensity": 3,
+        "occlusionRisk": 1,
+        "actionReadinessNeed": 3
+      },
+      "estimatedCounts": {
+        "macroComponents": 4,
+        "mesoComponents": 6,
+        "microFeatureGroups": 5,
+        "materialLayers": 4,
+        "repetitionSystems": 1
+      }
+    }
+  }
+}
